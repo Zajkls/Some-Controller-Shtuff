@@ -1,24 +1,11 @@
 import pygame
 
 clock = pygame.time.Clock()
-
-from pynput import mouse
 import time
 import pygame
 import os
-import asyncio 
-from pyjoycon import GyroTrackingJoyCon, get_R_id
+import asyncio
 import math
-
-#mouse_listener = pynput.mouse.Listener(suppress=True)
-#mouse_listener.start()
-"""joycon_id = get_R_id()
-joycon = GyroTrackingJoyCon(*joycon_id)
-joycon.calibrate(seconds=10)
-time.sleep(10)  # Allow time for calibration"""
-"""for i in range(20):
-    print(f'2: {math.degrees(joycon.rotation.x)}')
-    time.sleep(3)"""
 pygame.init()
 pygame.mixer.init()
 pygame.mixer.set_num_channels(101)
@@ -47,21 +34,28 @@ songs=['FNAF.mp3',
        'skyrimsound.mp3'
        'Imyours.mp3', 
        'let_her_go.mp3']
+
+#inits
 cur_channel = 0
 cur_sound = 0
 cur_song = 0
 joystic = 0
 all_sounds = len(sounds)
 all_songs = len(songs)
+
 joy = pygame.joystick.Joystick(joystic)
 print(joy.get_name())
 print(joy.get_button(0))
 print(joy.get_instance_id())
+#startup
+
 joy.rumble(1, 1, 1000)
+print("Booted")
+
 joystick_movement = 0
 pygame.mixer.music.set_volume(1)
 
-print(pygame.mixer.music.get_volume())
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.JOYBUTTONDOWN:
@@ -126,7 +120,3 @@ while True:
             elif joy.get_button(9) and joy.get_button(10) and joy.get_button(6):
                 quit()
     clock.tick(30)
-"""joystick= pygame.joystick.Joystick(0)
-joystick.init()
-joystick.rumble(1, 1, 1000)"""
-#while_looper(0)
